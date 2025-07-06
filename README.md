@@ -46,7 +46,7 @@ trunk serve --open
 
 Rebuilds the app whenever a change is detected and runs a local server to host it.
 
-Once it's running, clock on the `Choose File` button to "upload" a
+Once it's running, click on the `Choose File` button to "upload" a
 file to your Browser (i.e., this is client-side only upload; you're
 not sending anything to a server).  Then&mdash;after uploading a
 file&mdash;restart the app by refreshing the page. In the JavaScript
