@@ -1,6 +1,17 @@
-# Yew Trunk Template
+# Indexed-db Panic
 
-This is a fairly minimal template for a Yew app that's built with [Trunk].
+This is a little app that causes indexed-db to panic.  Its sole
+purpose is to [provide an
+example](https://github.com/ctm/mb2-doc/issues/1636) for the
+indexed-db maintainers. However, if you're curious about its origin,
+[this
+comment](https://github.com/ctm/mb2-doc/issues/1632#issuecomment-3039775943)
+provides a tiny bit of context.
+
+This app started as a fairly minimal template for a Yew app that's
+built with [Trunk]. I then hacked in the portion of mb2's (mb2 is
+closed-source) CSS upload code that caused the panic. After that, I
+stripped out as much as I could while still getting the panic.
 
 ## Usage
 
@@ -30,46 +41,22 @@ That's it, we're done!
 ### Running
 
 ```bash
-trunk serve
+trunk serve --open
 ```
 
 Rebuilds the app whenever a change is detected and runs a local server to host it.
 
-There's also the `trunk watch` command which does the same thing but without hosting it.
-
-### Release
-
-```bash
-trunk build --release
-```
-
-This builds the app in release mode similar to `cargo build --release`.
-You can also pass the `--release` flag to `trunk serve` if you need to get every last drop of performance.
-
-Unless overwritten, the output will be located in the `dist` directory.
-
-## Using this template
-
-There are a few things you have to adjust when adopting this template.
-
-### Remove example code
-
-The code in [src/main.rs](src/main.rs) specific to the example is limited to only the `view` method.
-There is, however, a fair bit of Sass in [index.scss](index.scss) you can remove.
-
-### Update metadata
-
-Update the `version`, `description` and `repository` fields in the [Cargo.toml](Cargo.toml) file.
-The [index.html](index.html) file also contains a `<title>` tag that needs updating.
-
-
-Finally, you should update this very `README` file to be about your app.
+Once it's running, clock on the `Choose File` button to "upload" a
+file to your Browser (i.e., this is client-side only upload; you're
+not sending anything to a server).  Then&mdash;after uploading a
+file&mdash;restart the app by refreshing the page. In the JavaScript
+console, you should see a `Transaction blocked without any request
+under way` panic followed by a back-trace (at least until the
+indexed-db bug has been fixed).
 
 ### License
 
-The template ships with both the Apache and MIT license.
-If you don't want to have your app dual licensed, just remove one (or both) of the files and update the `license` field in `Cargo.toml`.
-
-There are two empty spaces in the MIT license you need to fill out: `` and `Clifford T. Matthews <ctm@devctm.com>`.
+The template ships with both the Apache and MIT license. I've removed the Apache
+license and added the Unlicense.
 
 [trunk]: https://github.com/thedodd/trunk
